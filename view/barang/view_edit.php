@@ -17,10 +17,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        <<a class="nav-link" href="">barang</a>
+          <<a class="nav-link active" aria-current="page" href="../jenis/index.php">barang</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="../jenis/index.php">edit</a> 
+        <a class="nav-link"  href="../jenis/index.php">jenis</a>
           
         </li>
         </ul>
@@ -28,27 +28,34 @@
   </div>
 </nav>
     <div class="container">
-        <h1>tambah data barang</h1>
-        <form action="view_tambah.php" method="post">
+        <h1>edit barang nurul</h1>
+        <?php
+        include '../../config/koneksi.php';
+
+        $id=$_GET['id'];
+        $query=mysqli_query($conn,"SELECT * FROM barang WHERE id_barang='$id'");
+        $result=mysqli_fetch_array($query);
+        ?>
+        <form action="proses_edit.php?id=" method="post">
             <div class="mb-3">
                 <label for="" class="form-label">id_barang</label>
-                <input type="text" class="form-control" name="id_barang" id="" placeholder=""/>
+                <input type="text" class="form-control" value="<?php echo $result['id_barang']?>" name ="id_barang" id="" placeholder=""/>
                 </div>
                 <div class="mb-3">
                 <label for="" class="form-label">nama_barang</label>
-                <input type="text" class="form-control" name="nama_barang" id="" placeholder=""/>   
+                <input type="text" class="form-control"value="<?php echo $result['nama_barang']?>" name="nama_barang" id="" placeholder=""/>   
                 </div>
                 <div class="mb-3">
                 <label for="" class="form-label">id_jenis</label>
-                <input type="text" class="form-control" name="id_jenis" id="" placeholder=""/>
+                <input type="text" class="form-control"value="<?php echo $result['id_jenis']?>" name="id_jenis" id="" placeholder=""/>
                 </div>
                 <div class="mb-3">
                 <label for="" class="form-label">harga</label>
-                <input type="text" class="form-control" name="harga" id="" placeholder=""/>
+                <input type="text" class="form-control"value="<?php echo $result['harga']?>" name="harga" id="" placeholder=""/>
                 </div>
                 <div class="mb-3">
                 <label for="" class="form-label">stok</label>
-                <input type="text" class="form-control" name="stok" id="" placeholder=""/>
+                <input type="text" class="form-control"value="<?php echo $result['stok']?>" name="stok" id="" placeholder=""/>
                 </div>
                 <button type="submit" class="btn btn-pimary">submit</button>           
         </form>
